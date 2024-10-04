@@ -1,0 +1,62 @@
+{% block content %}
+<style>
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    /* align-items: center;     Centraliza verticalmente */
+    background-color: #f0f0f0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  a {
+      text-decoration: none;
+  }
+
+  .container {
+    margin: 5px 0;
+    width: 50%;
+    border: rgb(107, 99, 99) solid 2px;
+    border-radius: 10px;
+    padding: 5px;
+    min-height: 50vh;
+    text-align: center;
+  }
+
+  div {
+    margin: 5px 0;
+  }
+
+  .botao-atualizar {
+    background-color: #6f42c1;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transição suave para a cor de fundo */
+  }
+  .botao-atualizar:hover {
+    background-color: #5a32a2; /* Cor de fundo um pouco mais escura ao passar o mouse */
+  }
+</style>
+
+<body>
+  <div class="container">
+    <!-- <form method="post" enctype="multipart/form-data"></form> -->
+        {% csrf_token %}
+        <h1>Editar Tarefa</h1>
+        <table>
+          {{ form.as_table }}
+        </table>
+        <div>
+          <div class="buttons-container">
+            <input class="botao-atualizar" type="submit" value="Salvar Alterações" >
+            <a href="{% url 'lista' %}" class="btn btn-secondary">Voltar</a>
+          </div>
+        </div>
+    </form>
+  </div>
+</body>
+
+{% endblock %}

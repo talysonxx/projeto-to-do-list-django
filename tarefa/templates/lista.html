@@ -1,0 +1,79 @@
+{% block content %}
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center; /* Centraliza horizontalmente */
+            /* align-items: center;     Centraliza verticalmente */
+            background-color: #f0f0f0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            margin: 5px 0;
+            width: 50%;
+            border: rgb(107, 99, 99) solid 2px;
+            border-radius: 10px;
+            padding: 5px;
+            min-height: 50vh;
+            text-align: center;
+        }
+
+        .botao-nova-tarefa {
+            background-color: #f1c40f;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Animação suave */
+        }
+        .botao-nova-tarefa:hover {
+            background-color: #d4ac0d; /* Cor mais escura no hover */
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
+        }
+
+         ul {
+            text-align: start;
+            list-style-type: none; /* Remove os marcadores de lista */
+            padding: 0;
+         }
+
+         li {
+            color: black;
+            background-color: #aed2f3; /* Cor de fundo original */
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 10px;
+            transition: background-color 0.3s ease; /* Animação suave */
+         }
+         li:hover {
+            background-color: #7eafe4; /* Cor de fundo um pouco mais escura no hover */
+         }
+
+    </style>
+    <div class="container">
+        <h1>Lista de tarefas</h1>
+        
+        <a href="{% url 'nova' %}"><button class="botao-nova-tarefa" type="button" >Nova Tarefa</button></a>
+
+        <!-- <button class="botao-nova-tarefa" type="button"><a href="{% url 'nova' %}">Nova Tarefa</a></button> -->
+        <ul>
+            {% if tarefas %}
+            {% for tarefa in tarefas %}
+            <a href="{% url 'deletar' tarefa.pk %}">
+                <li title="Clique para editar">{{ tarefa.nome_tarefa }}</li>
+            </a>
+            {% endfor %}
+            {% else %}
+                <p>Nenhum tarefa encontrada.</p>        
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
+</html>
